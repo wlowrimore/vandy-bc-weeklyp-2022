@@ -88,3 +88,48 @@ function getTodaysDate() {
 }
 getTodaysDate();
 
+// color coded text fields
+dailyTimes.forEach(function(curHour) {
+  var hourRow = $("<form>").attr({
+      "class": "row"
+  });
+  $(".container").append(hourRow);
+
+  // displays time fields 
+  var hourField = $("<div>")
+      .text(`${curHour.hour}${curHour.meridiem}`)
+      .attr({
+          "class": "col-md-2 hour"
+  });
+
+  // description of scheduled tasks/time state
+  var hourTask = $("<div>")
+      .attr({
+          "class": "col-md-9 description p-0"
+      });
+  var taskInfo = $("<textarea>");
+  hourTask.append(taskInfo);
+  taskInfo.attr("id", curHour.id);
+  if (curHour.time < moment().format("HH")) {
+      taskInfo.attr ({
+          "class": "past", 
+      })
+  } else if (curHour.time === moment().format("HH")) {
+      taskInfo.attr({
+          "class": "present"
+      })
+  } else if (curHour.time > moment().format("HH")) {
+      taskInfo.attr({
+          "class": "future"
+      })
+  }
+
+  // save button
+  var saveButton = $("<i class='far fa-save fa-lg'></i>")
+  var saveAction = $("<button>")
+      .attr({
+          "class": "col-md-1 saveBtn"
+  });
+  saveAction.append(saveButton);
+  hourRow.append(hourField, hourTask, saveAction);
+})
