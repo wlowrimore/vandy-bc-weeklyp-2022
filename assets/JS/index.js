@@ -102,24 +102,24 @@ dailyTimes.forEach(function(curHour) {
           "class": "col-md-2 hour"
   });
 
-  // description of scheduled tasks/time state
-  var hourTask = $("<div>")
+  // description of scheduled reminders/time state
+  var hourReminder = $("<div>")
       .attr({
           "class": "col-md-9 description p-0"
       });
-  var taskInfo = $("<textarea>");
-  hourTask.append(taskInfo);
-  taskInfo.attr("id", curHour.id);
+  var reminderInfo = $("<textarea>");
+  hourReminder.append(reminderInfo);
+  reminderInfo.attr("id", curHour.id);
   if (curHour.time < moment().format("HH")) {
-      taskInfo.attr ({
+      reminderInfo.attr ({
           "class": "past", 
       })
   } else if (curHour.time === moment().format("HH")) {
-      taskInfo.attr({
+      reminderInfo.attr({
           "class": "present"
       })
   } else if (curHour.time > moment().format("HH")) {
-      taskInfo.attr({
+      reminderInfo.attr({
           "class": "future"
       })
   }
@@ -131,5 +131,42 @@ dailyTimes.forEach(function(curHour) {
           "class": "col-md-1 saveBtn"
   });
   saveAction.append(saveButton);
-  hourRow.append(hourField, hourTask, saveAction);
+  hourRow.append(hourField, hourReminder, saveAction);
 })
+
+// saves reminders into localStorage
+function saveReminders() {
+  localStorage.setItem("dailyTimes", JSON.stringify(dailyTimes));
+}
+
+// saves all info needed, in localStorage
+$(".saveBtn").on("click", function(event) {
+  event.preventDefault();
+  var saveIndex = $(this).siblings(".description").children(".future").attr("id");
+  dailyTimes[saveIndex].reminder = $(this).siblings(".description").children(".future").val();
+  console.log(saveIndex);
+  saveReminders();
+  displayReminders();
+})
+
+// allows localStorage info to be viewed
+function displayReminders() {
+  dailyTimes.forEach(function (_curHour) {
+      $(`#${_curHour.id}`).val(_curHour.reminder);
+  })
+}
+
+// looks for any existing localStorage info and displays it
+function init() {
+  var storedDay = JSON.parse(localStorage.getItem("dailyTimes"));
+
+  if (storedDay) {
+      dailyTimes = storedDay;
+  }
+
+  saveReminders();
+  displayReminders();
+}
+
+// loads existing info that's found in localstorage
+init();
