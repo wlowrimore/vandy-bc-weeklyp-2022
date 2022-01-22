@@ -1,3 +1,9 @@
 # Weekly Schedule 
 
 This challenge was built using HTML, CSS and JavaScript.  The use of third-party APIs (such as) moment.js, font awesome, bootsrap, etc. not only resulted in a much more interactive site, but also, provided a much more visual appeal.  I relied, heavily,  on previous class modules, my tutor's input, and the (very important) use of "google-foo".  jQuery is a key element in the base code of the javaScript, providing a library of cool "shortcuts" which kept the code neat, clean, and minimal.  In the first 13 lines of the index.js file, you will find the original expectations provided to the class.  I used these comments as my psuedo-code.  I then broke each line down and created it's own psuedo-code (listed throughout the main index.js file).  The style.css file was slightly adjusted, changing the white text to black text.  The end result is a fully functioning hourly planner that recognizes time slots, and tracks the current time of day to assign a reference of past, present and future.  Each pretense is assigned a color code.  These color codes change according to real time.  All tasks are stored in local storage so they can be accesssed, even after the page has been closed and reopened, or simply refreshed.  The date at the head of the document is also displayed in real time, so the date will change in real time, as well.  
+
+<img src= "assets\screenshot\screencapture-file-C-Users-wlowr-onedrive-desktop-challenges-weekly-planner-index-html-2022-01-22-13_29_51.png" alt= "Weekly Schedule">
+
+<a href= "https://github.com/wlowrimore/vandy-bc-weeklyp-2022" target= "_blank" rel= "noreferrer">My GitHub Page</a>
+
+<a href= "https://wlowrimore.github.io/vandy-bc-weeklyp-2022/" target= "_blank" rel= "noreferrer">See The Live Site</a>
