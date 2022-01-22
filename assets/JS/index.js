@@ -168,12 +168,5 @@ function init() {
   displayReminders();
 }
 
-// checks time every 30 minutes
-setInterval(function() {
-  dailyTimes.forEach(function (_curHour) {
-    $(`#${_curHour.id}`).val(_curHour.reminder);
-  });
-}, 1800000);
-
 // loads existing info that's found in localstorage
 init();
